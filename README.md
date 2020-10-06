@@ -9,7 +9,7 @@
 - Official website: **https://hacktoberfest.digitalocean.com/**
 
 ## **TO CONTRIBUTE**
-### Make 4 pull requests on 4 different Respositories to complete the challenge.
+### Make 4 pull requests on 4 same or different Respository(ies) to complete the challenge.
 ### In this repository:
 - **Fork** this repository to your Repositories and leave a Star
 - Follow some simple steps and open a pull request.
