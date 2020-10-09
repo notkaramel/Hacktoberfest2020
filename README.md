@@ -11,8 +11,9 @@
 #### In this repository:
 - Click on _Contribution_ file
 - Choose _Add file_
-- My goal on this repo is to gather *basic sorting algorithms* on every coding languagues (C/C++, C#. Python, etc)
+- My goal on this repo is to gather **ALL basic algorithms** on every coding languagues (C/C++, C#. Python, etc)
 - In 2-3 days I will check your contribution and merge if acceptable
+- Please don't submit "HelloWorld"s
 
 ### 🎉 HAVE A FUN HACKTOBERFEST 🎉
 > from notkaramel with love 💕
