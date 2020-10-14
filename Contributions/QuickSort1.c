@@ -1,56 +1,85 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdbool.h>
+#define MAX 7
 
-void quicksort(int *arr, int low, int high)
-{
-  int pivot, i, j, temp;
-  if(low < high) {
-    pivot = low; // select a pivot element
-    i = low;
-    j = high;
-    while(i < j) {
-      // increment i till you get a number greater than the pivot element
-      while(arr[i] <= arr[pivot] && i <= high)
-        i++;
-      // decrement j till you get a number less than the pivot element
-      while(arr[j] > arr[pivot] && j >= low)
-        j--;
-      // if i < j swap the elements in locations i and j
-      if(i < j) {
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+int intArray[MAX] = {4,6,3,2,1,9,7};
+
+void printline(int count){
+   int i;
+	
+   for(i = 0;i <count-1;i++){
+      printf("=");
+   }
+	
+   printf("=\n");
+}
+
+void display(){
+   int i;
+   printf("[");
+	
+   // navigate through all items 
+   for(i = 0;i<MAX;i++){
+      printf("%d ",intArray[i]);
+   }
+	
+   printf("]\n");
+}
+
+void swap(int num1, int num2){
+   int temp = intArray[num1];
+   intArray[num1] = intArray[num2];
+   intArray[num2] = temp;
+}
+
+int partition(int left, int right, int pivot){
+   int leftPointer = left -1;
+   int rightPointer = right;
+
+   while(true){
+	
+      while(intArray[++leftPointer] < pivot){
+         //do nothing
       }
-    }
+		
+      while(rightPointer > 0 && intArray[--rightPointer] > pivot){
+         //do nothing
+      }
 
-    // when i >= j it means the j-th position is the correct position
-    // of the pivot element, hence swap the pivot element with the
-    // element in the j-th position
-    temp = arr[j];
-    arr[j] = arr[pivot];
-    arr[pivot] = temp;
-    // Repeat quicksort for the two sub-arrays, one to the left of j
-    // and one to the right of j
-    quicksort(arr, low, j-1);
-    quicksort(arr, j+1, high);
-  }
+      if(leftPointer >= rightPointer){
+         break;
+      }else{
+         printf(" item swapped :%d,%d\n", 
+         intArray[leftPointer],intArray[rightPointer]);
+         swap(leftPointer,rightPointer);
+      }
+		
+   }
+	
+   printf(" pivot swapped :%d,%d\n", intArray[leftPointer],intArray[right]);
+   swap(leftPointer,right);
+   printf("Updated Array: "); 
+   display();
+   return leftPointer;
 }
 
-int main()
-{
-  int arr[20], n, i;
-  printf("Enter the size of the array\n");
-  scanf("%d", &n);
+void quickSort(int left, int right){        
+   if(right-left <= 0){
+      return;   
+   }else {
+      int pivot = intArray[right];
+      int partitionPoint = partition(left, right, pivot);
+      quickSort(left,partitionPoint-1);
+      quickSort(partitionPoint+1,right);
+   }        
+}   
 
-  printf("Enter the elements to be sorted\n");
-  for(i = 0; i < n; i++)
-    scanf("%d", &arr[i]);
-
-  quicksort(arr, 0, n-1);
-
-  printf("Sorted array\n");
-  for(i = 0; i < n; i++)
-    printf("%d ", arr[i]);
-
-  return 0;
+main(){
+   printf("Input Array: ");
+   display();
+   printline(50);
+   quickSort(0,MAX-1);
+   printf("Output Array: ");
+   display();
+   printline(50);
 }
-
